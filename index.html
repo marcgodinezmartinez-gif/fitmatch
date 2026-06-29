@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Tallas Profesional | Calculadora de Calzado</title>
+    <meta name="description" content="Calculadora profesional de equivalencia de tallas de zapatillas. Convierte de forma precisa entre Nike, ASICS y New Balance basándote en centímetros.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans for premium tech branding -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#0c0c0e',      // Background deep charcoal
+                        brandCard: '#16161a',      // Card surface
+                        brandBorder: '#232329',    // Thin elegant border
+                        brandAccent: '#10b981',    // Emerald accent
+                        brandAccentHover: '#059669', // Muted/Deepened emerald hover
+                        brandTextMuted: '#8e8e9f'  // Muted grey text
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar and select focus effects for premium styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c0c0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232329;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2e2e36;
+        }
+    </style>
+</head>
+<body class="bg-brandDark text-gray-100 font-sans antialiased selection:bg-brandAccent selection:text-brandDark min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-brandBorder/60 bg-brandDark/80 backdrop-blur-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5">
+                <!-- Premium Minimalist Logo Icon -->
+                <div class="w-8 h-8 rounded-lg bg-brandAccent flex items-center justify-center font-bold text-brandDark text-lg tracking-tighter">
+                    F
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-bold tracking-wider text-white uppercase leading-none">FitMatch</span>
+                    <span class="text-[10px] text-brandTextMuted tracking-widest uppercase leading-none mt-0.5">Size Tech</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-4">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brandBorder text-gray-300 border border-brandBorder">
+                    v1.1.0
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        
+        <!-- Hero Section -->
+        <div class="text-center mb-12 md:mb-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brandBorder bg-brandCard/40 text-xs font-semibold tracking-wider text-brandAccent uppercase mb-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandAccent animate-pulse"></span> Conversión por centímetros (CM)
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+                Conversor de Tallas Profesional
+            </h1>
+            <p class="text-base md:text-lg text-brandTextMuted max-w-xl mx-auto font-light leading-relaxed">
+                Calcula al instante la equivalencia exacta de calzado entre las principales marcas deportivas. Optimizado para evitar errores de tallaje.
+            </p>
+        </div>
+
+        <!-- Calculator Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Column: Input Form (lg:col-span-7) -->
+            <div class="lg:col-span-7 bg-brandCard border border-brandBorder rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="border-b border-brandBorder pb-4">
+                    <h2 class="text-lg font-semibold text-white">Configuración del calzado</h2>
+                    <p class="text-xs text-brandTextMuted mt-0.5">Selecciona el modelo actual y la marca de destino.</p>
+                </div>
+
+                <!-- Brand A (Source Brand) -->
+                <div class="space-y-2">
+                    <label for="brandA" class="block text-xs font-medium text-gray-300 uppercase tracking-wider">Marca Actual (Tu Calzado)</label>
+                    <div class="relative">
+                        <select id="brandA" class="appearance-none w-full bg-brandDark border border-brandBorder rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent transition-all duration-200 cursor-pointer pr-10">
+                            <!-- Populated dynamically -->
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row: Gender & Category (now dynamically filtered by Brand A) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Category Selection -->
+                    <div class="space-y-2">
+                        <label for="category" class="block text-xs font-medium text-gray-300 uppercase tracking-wider">Categoría</label>
+                        <div class="relative">
+                            <select id="category" class="appearance-none w-full bg-brandDark border border-brandBorder rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent transition-all duration-200 cursor-pointer pr-10">
+                                <!-- Populated dynamically -->
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gender Selection -->
+                    <div class="space-y-2">
+                        <label for="gender" class="block text-xs font-medium text-gray-300 uppercase tracking-wider">Género</label>
+                        <div class="relative">
+                            <select id="gender" class="appearance-none w-full bg-brandDark border border-brandBorder rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent transition-all duration-200 cursor-pointer pr-10">
+                                <!-- Populated dynamically -->
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Size A (Current Size) -->
+                <div class="space-y-2">
+                    <label for="sizeA" class="block text-xs font-medium text-gray-300 uppercase tracking-wider">Talla Actual (Escala EU)</label>
+                    <div class="relative">
+                        <select id="sizeA" class="appearance-none w-full bg-brandDark border border-brandBorder rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent transition-all duration-200 cursor-pointer pr-10">
+                            <!-- Populated dynamically -->
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="sizeDetailsA" class="text-xs text-brandTextMuted flex gap-4 pt-1 font-mono">
+                        <!-- Shows US, UK, CM details of Brand A size on change -->
+                    </div>
+                </div>
+
+                <div class="border-t border-brandBorder/60 pt-5 space-y-4">
+                    <!-- Brand B (Destination) -->
+                    <div class="space-y-2">
+                        <label for="brandB" class="block text-xs font-medium text-gray-300 uppercase tracking-wider">Marca a Buscar (Objetivo)</label>
+                        <div class="relative">
+                            <select id="brandB" class="appearance-none w-full bg-brandDark border border-brandBorder rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brandAccent focus:ring-1 focus:ring-brandAccent transition-all duration-200 cursor-pointer pr-10">
+                                <!-- Populated dynamically -->
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Result Box (lg:col-span-5) -->
+            <div class="lg:col-span-5 space-y-6">
+                <!-- Result Card -->
+                <div class="bg-brandCard border border-brandBorder rounded-2xl p-6 sm:p-8 flex flex-col justify-between min-h-[400px] relative overflow-hidden transition-all duration-300">
+                    <!-- Decorative backglow representing premium styling -->
+                    <div class="absolute -right-20 -top-20 w-44 h-44 rounded-full bg-brandAccent/5 blur-3xl pointer-events-none"></div>
+
+                    <!-- Loader skeleton animation (Shown during fetch) -->
+                    <div id="resultLoader" class="animate-pulse flex-grow flex flex-col justify-between space-y-6 py-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="h-3 bg-brandBorder rounded w-24"></div>
+                                <div class="h-5 bg-brandBorder rounded-full w-28"></div>
+                            </div>
+                            <div class="mt-4 flex items-baseline gap-2">
+                                <div class="h-4 bg-brandBorder rounded w-12"></div>
+                                <div class="h-14 bg-brandBorder rounded w-24"></div>
+                                <div class="h-6 bg-brandBorder rounded w-8"></div>
+                            </div>
+                            <div class="h-3 bg-brandBorder rounded w-3/4 mt-4"></div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 border-t border-b border-brandBorder py-5">
+                            <div class="space-y-2 flex flex-col items-center">
+                                <div class="h-2 bg-brandBorder rounded w-10"></div>
+                                <div class="h-5 bg-brandBorder rounded w-8 mt-1"></div>
+                            </div>
+                            <div class="space-y-2 border-l border-r border-brandBorder flex flex-col items-center">
+                                <div class="h-2 bg-brandBorder rounded w-10"></div>
+                                <div class="h-5 bg-brandBorder rounded w-8 mt-1"></div>
+                            </div>
+                            <div class="space-y-2 flex flex-col items-center">
+                                <div class="h-2 bg-brandBorder rounded w-10"></div>
+                                <div class="h-5 bg-brandBorder rounded w-12 mt-1"></div>
+                            </div>
+                        </div>
+                        <div class="h-14 bg-brandBorder rounded-xl w-full"></div>
+                    </div>
+
+                    <!-- Placeholder state when not loaded or selected -->
+                    <div id="resultPlaceholder" class="hidden flex-grow flex flex-col items-center justify-center text-center py-12 space-y-4">
+                        <div class="w-12 h-12 rounded-full border border-brandBorder flex items-center justify-center text-brandTextMuted">
+                            <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-sm font-semibold text-white">Esperando selección</h3>
+                            <p class="text-xs text-brandTextMuted max-w-[240px]">Completa los datos de la izquierda para calcular tu talla equivalente.</p>
+                        </div>
+                    </div>
+
+                    <!-- Output Content state (Hidden by default) -->
+                    <div id="resultContent" class="hidden flex-grow flex flex-col justify-between space-y-6">
+                        <!-- Top Header info -->
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-brandTextMuted uppercase tracking-wider">Talla Recomendada</span>
+                                <span id="matchBadge" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border transition-all duration-300">
+                                    <!-- Populated dynamically: Ajuste Exacto or Ajuste Óptimo -->
+                                </span>
+                            </div>
+                            <!-- Primary calculated size -->
+                            <div class="mt-4 flex items-baseline gap-2">
+                                <span class="text-xs text-brandTextMuted uppercase tracking-wider mr-1" id="destBrandLabel"></span>
+                                <span class="text-6xl font-extrabold tracking-tight text-white" id="destSizeEU">--</span>
+                                <span class="text-2xl font-bold text-gray-400">EU</span>
+                            </div>
+                            <p class="text-xs text-brandTextMuted mt-2 leading-relaxed" id="matchDescription"></p>
+                        </div>
+
+                        <!-- 3-Column Scales breakdown -->
+                        <div class="grid grid-cols-3 gap-3 border-t border-b border-brandBorder py-5 font-mono">
+                            <div class="text-center">
+                                <span class="block text-[10px] text-brandTextMuted uppercase font-medium tracking-widest">US Size</span>
+                                <span class="block text-lg font-bold text-white mt-1" id="destSizeUS">--</span>
+                            </div>
+                            <div class="text-center border-l border-r border-brandBorder">
+                                <span class="block text-[10px] text-brandTextMuted uppercase font-medium tracking-widest">UK Size</span>
+                                <span class="block text-lg font-bold text-white mt-1" id="destSizeUK">--</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="block text-[10px] text-brandTextMuted uppercase font-medium tracking-widest">Longitud</span>
+                                <span class="block text-lg font-bold text-brandAccent mt-1" id="destSizeCM">-- cm</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Affiliate Button & Fallback Notice -->
+                        <div class="pt-2">
+                            <a id="ctaButton" href="#" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between w-full bg-brandAccent hover:bg-brandAccentHover text-brandDark font-semibold rounded-xl px-5 py-4 text-sm transition-all duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-brandAccent focus:ring-offset-2 focus:ring-offset-brandDark">
+                                <span id="ctaText">Ver disponibilidad en Amazon</span>
+                                <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                            <p class="text-[10px] text-center text-brandTextMuted mt-3">
+                                Nota: Las equivalencias son orientativas y se basan en las guías oficiales de las marcas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dynamic SEO / FAQ Section -->
+        <section class="mt-20 border-t border-brandBorder/60 pt-16">
+            <h2 class="text-2xl font-bold text-white tracking-tight mb-8">Información sobre tallaje deportivo</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-2">
+                    <h3 class="text-sm font-semibold text-white">¿Por qué varían las tallas?</h3>
+                    <p class="text-sm text-brandTextMuted leading-relaxed">
+                        Cada fabricante utiliza hormas de confección distintas. Un número 42 de Nike puede medir 26.5 cm, mientras que un 42 de ASICS mide 26.5 cm o 25.25 cm dependiendo del modelo. La única medida universal y fiable es la longitud interior en centímetros.
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-sm font-semibold text-white">¿Qué es el Ajuste Óptimo?</h3>
+                    <p class="text-sm text-brandTextMuted leading-relaxed">
+                        Si tu longitud exacta no coincide con la escala de la marca objetivo, la calculadora seleccionará el tamaño superior más próximo (normalmente +0.25 cm o +0.5 cm). Esto garantiza que el pie disponga de la holgura idónea para evitar fricción y molestias.
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-sm font-semibold text-white">Cómo medir tu pie</h3>
+                    <p class="text-sm text-brandTextMuted leading-relaxed">
+                        Ponte de pie sobre un papel apoyando el talón contra la pared. Dibuja el contorno del dedo más largo. Mide la distancia en centímetros. Es aconsejable añadir unos 0.5 cm de margen adicional para zapatillas de correr.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-brandBorder bg-[#09090b] text-brandTextMuted py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:flex sm:justify-between sm:items-center text-xs">
+            <p>&copy; 2026 FitMatch. Todos los derechos reservados. Las marcas comerciales pertenecen a sus respectivos dueños.</p>
+            <p class="mt-2 sm:mt-0">
+                Enlaces afiliados de Amazon. Recibimos una pequeña comisión por compras elegibles.
+            </p>
+        </div>
+    </footer>
+
+    <!-- App JavaScript Logic -->
+    <script>
+        let db = []; // Size template database
+        let isUpdatingFromUrl = false; // Prevents URL rewrite feedback loops during popstate/parsing
+        let urlParams = null; // Stored query parameters during initial load
+
+        // DOM elements
+        const selectCategory = document.getElementById('category');
+        const selectGender = document.getElementById('gender');
+        const selectBrandA = document.getElementById('brandA');
+        const selectSizeA = document.getElementById('sizeA');
+        const selectBrandB = document.getElementById('brandB');
+        const sizeDetailsA = document.getElementById('sizeDetailsA');
+        
+        const resultLoader = document.getElementById('resultLoader');
+        const resultPlaceholder = document.getElementById('resultPlaceholder');
+        const resultContent = document.getElementById('resultContent');
+        const destBrandLabel = document.getElementById('destBrandLabel');
+        const destSizeEU = document.getElementById('destSizeEU');
+        const destSizeUS = document.getElementById('destSizeUS');
+        const destSizeUK = document.getElementById('destSizeUK');
+        const destSizeCM = document.getElementById('destSizeCM');
+        const matchBadge = document.getElementById('matchBadge');
+        const matchDescription = document.getElementById('matchDescription');
+        const ctaButton = document.getElementById('ctaButton');
+        const ctaText = document.getElementById('ctaText');
+
+        // Initial loading of size chart database
+        async function init() {
+            try {
+                // Keep the loader skeleton active
+                resultLoader.classList.remove('hidden');
+                resultPlaceholder.classList.add('hidden');
+                resultContent.classList.add('hidden');
+
+                const response = await fetch('./data.json');
+                if (!response.ok) {
+                    throw new Error('Error al cargar la base de datos de tallas.');
+                }
+                db = await response.json();
+                
+                // Hide loader skeleton once data is parsed
+                resultLoader.classList.add('hidden');
+
+                // Read URL parameters first to guide initial selection
+                const params = new URLSearchParams(window.location.search);
+                urlParams = {
+                    from: params.get('from'),
+                    to: params.get('to'),
+                    size: params.get('size'),
+                    gender: params.get('gender'),
+                    category: params.get('category')
+                };
+
+                // Populate Brand A (list of all unique brands)
+                const brands = [...new Set(db.map(item => item.brand))];
+                selectBrandA.innerHTML = brands.map(b => `<option value="${b}">${b}</option>`).join('');
+                if (urlParams.from) {
+                    const matched = brands.find(b => b.toLowerCase() === urlParams.from.toLowerCase());
+                    if (matched) selectBrandA.value = matched;
+                }
+
+                // Run the cascading dropdown populations under initializing flag
+                isUpdatingFromUrl = true;
+                updateCategories();
+                updateGenders();
+                updateBrandBOptions();
+                updateSizes();
+                isUpdatingFromUrl = false;
+
+                // Sync URL and compute initial result
+                calculateEquivalence();
+                updateUrlParams(true); // true = initial load, uses replaceState
+
+                // Clear urlParams so future dropdown changes don't read them
+                urlParams = null;
+
+                // Bind unified event listeners
+                bindEvents();
+            } catch (err) {
+                console.error(err);
+                resultLoader.classList.add('hidden');
+                resultPlaceholder.classList.remove('hidden');
+                resultPlaceholder.innerHTML = `
+                    <div class="text-red-500 py-12">
+                        <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <p class="text-sm font-semibold">Error de conexión</p>
+                        <p class="text-xs text-brandTextMuted mt-1">No se pudo cargar la base de datos. Verifica que el archivo data.json esté presente y sea válido.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Dynamically populates Categories based on Brand A selection
+        function updateCategories() {
+            const currentBrandA = selectBrandA.value;
+            const categories = [...new Set(db.filter(item => item.brand === currentBrandA).map(item => item.category))];
+            
+            selectCategory.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            
+            if (urlParams && urlParams.category) {
+                const matched = categories.find(c => c.toLowerCase() === urlParams.category.toLowerCase());
+                if (matched) {
+                    selectCategory.value = matched;
+                    return;
+                }
+            }
+            const prevVal = selectCategory.value;
+            if (categories.includes(prevVal)) {
+                selectCategory.value = prevVal;
+            }
+        }
+
+        // Dynamically populates Genders based on Brand A + Category selection
+        function updateGenders() {
+            const currentBrandA = selectBrandA.value;
+            const currentCat = selectCategory.value;
+            const genders = [...new Set(db.filter(item => item.brand === currentBrandA && item.category === currentCat).map(item => item.gender))];
+            
+            selectGender.innerHTML = genders.map(gen => `<option value="${gen}">${gen}</option>`).join('');
+            
+            if (urlParams && urlParams.gender) {
+                const matched = genders.find(g => g.toLowerCase() === urlParams.gender.toLowerCase());
+                if (matched) {
+                    selectGender.value = matched;
+                    return;
+                }
+            }
+            const prevVal = selectGender.value;
+            if (genders.includes(prevVal)) {
+                selectGender.value = prevVal;
+            }
+        }
+
+        // Populates Brand B options: excludes Brand A by disabling the option
+        function updateBrandBOptions() {
+            const currentBrandA = selectBrandA.value;
+            const currentCat = selectCategory.value;
+            const currentGen = selectGender.value;
+
+            // Brand B must support the same Category & Gender combination
+            const filteredItems = db.filter(item => item.category === currentCat && item.gender === currentGen);
+            const brandsB = [...new Set(filteredItems.map(item => item.brand))];
+
+            if (brandsB.length > 0) {
+                let selectedVal = selectBrandB.value;
+                if (urlParams && urlParams.to) {
+                    const matched = brandsB.find(b => b.toLowerCase() === urlParams.to.toLowerCase());
+                    if (matched) {
+                        selectedVal = matched;
+                    }
+                }
+
+                selectBrandB.innerHTML = brandsB.map(b => {
+                    const isDisabled = b === currentBrandA ? 'disabled' : '';
+                    return `<option value="${b}" ${isDisabled}>${b}</option>`;
+                }).join('');
+
+                // Select validation: ensure we don't select the disabled Brand A option
+                if (brandsB.includes(selectedVal) && selectedVal !== currentBrandA) {
+                    selectBrandB.value = selectedVal;
+                } else {
+                    const firstEnabled = brandsB.find(b => b !== currentBrandA);
+                    if (firstEnabled) selectBrandB.value = firstEnabled;
+                }
+            } else {
+                selectBrandB.innerHTML = '<option value="">Elige otra marca</option>';
+            }
+        }
+
+        // Populates sizes list for Brand A
+        function updateSizes() {
+            const currentBrand = selectBrandA.value;
+            const currentCat = selectCategory.value;
+            const currentGen = selectGender.value;
+
+            const item = db.find(x => x.brand === currentBrand && x.category === currentCat && x.gender === currentGen);
+            if (item && item.sizes && item.sizes.length > 0) {
+                selectSizeA.innerHTML = item.sizes.map(size => {
+                    return `<option value="${size.EU}" data-us="${size.US}" data-uk="${size.UK}" data-cm="${size.CM}">
+                        EU ${size.EU} (${size.CM} cm)
+                    </option>`;
+                }).join('');
+
+                if (urlParams && urlParams.size) {
+                    const matched = item.sizes.find(s => s.EU.toLowerCase() === urlParams.size.toLowerCase());
+                    if (matched) {
+                        selectSizeA.value = matched.EU;
+                        updateSizeDetailsA();
+                        return;
+                    }
+                }
+
+                const prevSize = selectSizeA.value;
+                const sizesList = item.sizes.map(s => s.EU);
+                if (sizesList.includes(prevSize)) {
+                    selectSizeA.value = prevSize;
+                }
+                updateSizeDetailsA();
+            } else {
+                selectSizeA.innerHTML = '<option value="">N/A</option>';
+                sizeDetailsA.innerHTML = '';
+            }
+        }
+
+        // Display US, UK, CM details below selected size A dropdown
+        function updateSizeDetailsA() {
+            const selectedOpt = selectSizeA.options[selectSizeA.selectedIndex];
+            if (selectedOpt) {
+                const us = selectedOpt.getAttribute('data-us');
+                const uk = selectedOpt.getAttribute('data-uk');
+                const cm = selectedOpt.getAttribute('data-cm');
+                sizeDetailsA.innerHTML = `
+                    <span>US: ${us}</span>
+                    <span>UK: ${uk}</span>
+                    <span>Medida: ${cm} cm</span>
+                `;
+            } else {
+                sizeDetailsA.innerHTML = '';
+            }
+        }
+
+        // Core matching algorithm
+        function calculateEquivalence() {
+            const cat = selectCategory.value;
+            const gen = selectGender.value;
+            const brandA = selectBrandA.value;
+            const brandB = selectBrandB.value;
+            const sizeEU_A = selectSizeA.value;
+
+            if (!brandA || !brandB || !sizeEU_A || brandA === brandB) {
+                showPlaceholder();
+                return;
+            }
+
+            // Get source size details
+            const itemA = db.find(x => x.brand === brandA && x.category === cat && x.gender === gen);
+            if (!itemA) return showPlaceholder();
+            const sizeObjA = itemA.sizes.find(s => s.EU === sizeEU_A);
+            if (!sizeObjA) return showPlaceholder();
+
+            const cmA = parseFloat(sizeObjA.CM);
+
+            // Get destination brand sizing options
+            const itemB = db.find(x => x.brand === brandB && x.category === cat && x.gender === gen);
+            if (!itemB || !itemB.sizes || itemB.sizes.length === 0) {
+                return showPlaceholder();
+            }
+
+            // Find matching size
+            let recommendedSize = null;
+            let isExactMatch = false;
+
+            // Sort sizes by length CM ascending
+            const sortedSizesB = [...itemB.sizes].sort((a, b) => parseFloat(a.CM) - parseFloat(b.CM));
+
+            // Closest Match: Find the closest CM length where CM_B >= CM_A to ensure comfort
+            for (let i = 0; i < sortedSizesB.length; i++) {
+                const sizeB = sortedSizesB[i];
+                const cmB = parseFloat(sizeB.CM);
+                
+                if (cmB >= cmA) {
+                    recommendedSize = sizeB;
+                    // Check if identical (within 0.1 mm)
+                    if (Math.abs(cmB - cmA) < 0.01) {
+                        isExactMatch = true;
+                    }
+                    break;
+                }
+            }
+
+            // If input size is larger than anything available in brand B, take the largest
+            if (!recommendedSize) {
+                recommendedSize = sortedSizesB[sortedSizesB.length - 1];
+                isExactMatch = false;
+            }
+
+            // Update UI fields
+            displayResult({
+                brandB: brandB,
+                sizeA: sizeObjA,
+                sizeB: recommendedSize,
+                isExact: isExactMatch,
+                urlTemplate: itemB.affiliate_url_template
+            });
+
+            // Update query params in browser address bar (pushState)
+            updateUrlParams();
+        }
+
+        // Show result details inside right-column card
+        function displayResult(result) {
+            resultPlaceholder.classList.add('hidden');
+            resultContent.classList.remove('hidden');
+
+            destBrandLabel.textContent = result.brandB;
+            destSizeEU.textContent = result.sizeB.EU;
+            destSizeUS.textContent = result.sizeB.US;
+            destSizeUK.textContent = result.sizeB.UK;
+            destSizeCM.textContent = result.sizeB.CM;
+
+            const cmDiff = parseFloat(result.sizeB.CM) - parseFloat(result.sizeA.CM);
+
+            if (result.isExact) {
+                matchBadge.textContent = "Ajuste Exacto";
+                matchBadge.className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-emerald-500/30 bg-emerald-500/10 text-emerald-400";
+                matchDescription.innerHTML = `Las plantillas de ambas marcas miden exactamente lo mismo (<strong>${result.sizeB.CM} cm</strong>).`;
+            } else {
+                if (parseFloat(result.sizeB.CM) < parseFloat(result.sizeA.CM)) {
+                    matchBadge.textContent = "Talla Máxima";
+                    matchBadge.className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-red-500/30 bg-red-500/10 text-red-400";
+                    matchDescription.innerHTML = `Esta es la talla más grande de ${result.brandB}. Mide <strong>${result.sizeB.CM} cm</strong> (queda ${Math.abs(cmDiff).toFixed(2)} cm más corta).`;
+                } else if (cmDiff > 0.6) {
+                    matchBadge.textContent = "Ajuste aproximado";
+                    matchBadge.className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-amber-500/40 bg-amber-500/10 text-amber-400";
+                    matchDescription.innerHTML = `Diferencia de plantilla considerable (<strong>+${cmDiff.toFixed(2)} cm</strong>). Se recomienda probar para verificar el ajuste.`;
+                } else {
+                    matchBadge.textContent = "Ajuste óptimo";
+                    matchBadge.className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-brandAccent/30 bg-brandAccent/10 text-brandAccent";
+                    matchDescription.innerHTML = `No hay coincidencia exacta de plantilla. Recomendamos redondear hacia arriba (<strong>+${cmDiff.toFixed(2)} cm</strong>) para evitar roces.`;
+                }
+            }
+
+            // Affiliate Link template replacing
+            const template = result.urlTemplate;
+            const finalUrl = template.replace('{size}', result.sizeB.EU);
+            ctaButton.href = finalUrl;
+            ctaText.innerHTML = `Ver disponibilidad de la talla <strong>${result.sizeB.EU}</strong> en Amazon`;
+        }
+
+        // Show the placeholder skeleton when inputs are incomplete
+        function showPlaceholder() {
+            resultPlaceholder.classList.remove('hidden');
+            resultContent.classList.add('hidden');
+        }
+
+        // Bidirectional URL Parameter Sync: reflects selector changes in URL using pushState
+        function updateUrlParams(isInitial = false) {
+            if (isUpdatingFromUrl) return;
+
+            const fromBrand = selectBrandA.value;
+            const toBrand = selectBrandB.value;
+            const size = selectSizeA.value;
+            const gender = selectGender.value;
+            const category = selectCategory.value;
+
+            const url = new URL(window.location);
+            if (fromBrand) url.searchParams.set('from', fromBrand.toLowerCase());
+            if (toBrand) url.searchParams.set('to', toBrand.toLowerCase());
+            if (size) url.searchParams.set('size', size);
+            if (gender) url.searchParams.set('gender', gender.toLowerCase());
+            if (category) url.searchParams.set('category', category.toLowerCase());
+
+            if (isInitial) {
+                window.history.replaceState({}, '', url);
+            } else {
+                // Only push if search parameters have actually changed to avoid history duplicates
+                if (window.location.search !== url.search) {
+                    window.history.pushState({}, '', url);
+                }
+            }
+        }
+
+        // Parse search query parameters to auto-fill the UI on load or history back
+        function handleUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            const fromParam = params.get('from');
+            const toParam = params.get('to');
+            const sizeParam = params.get('size');
+            const genderParam = params.get('gender');
+            const categoryParam = params.get('category');
+
+            if (!fromParam && !toParam && !sizeParam) return; // No parameters, keep defaults
+
+            urlParams = {
+                from: fromParam,
+                to: toParam,
+                size: sizeParam,
+                gender: genderParam,
+                category: categoryParam
+            };
+
+            isUpdatingFromUrl = true;
+
+            // Set Brand A first to guide the cascade
+            if (urlParams.from) {
+                const matched = Array.from(selectBrandA.options).find(opt => opt.value.toLowerCase() === urlParams.from.toLowerCase());
+                if (matched) selectBrandA.value = matched.value;
+            }
+
+            // Run cascade updates
+            updateCategories();
+            updateGenders();
+            updateBrandBOptions();
+            updateSizes();
+
+            isUpdatingFromUrl = false;
+
+            // Calculate and display initial output
+            calculateEquivalence();
+
+            // Reset urlParams
+            urlParams = null;
+        }
+
+        // Optimized event delegation/handling: Handles cascading dropdown updates in a single pipeline
+        function handleUIStateChange(changeType) {
+            isUpdatingFromUrl = true; // Block pushState triggers during cascade
+
+            if (changeType === 'brandA') {
+                updateCategories();
+                updateGenders();
+                updateBrandBOptions();
+                updateSizes();
+            } else if (changeType === 'category') {
+                updateGenders();
+                updateBrandBOptions();
+                updateSizes();
+            } else if (changeType === 'gender') {
+                updateBrandBOptions();
+                updateSizes();
+            } else if (changeType === 'sizeA') {
+                updateSizeDetailsA();
+            } else if (changeType === 'brandB') {
+                // No dropdown update cascade required
+            }
+
+            isUpdatingFromUrl = false;
+
+            // Run match calculations and pushState URL sync
+            calculateEquivalence();
+        }
+
+        // Bind standard DOM event listeners
+        function bindEvents() {
+            selectBrandA.addEventListener('change', () => handleUIStateChange('brandA'));
+            selectCategory.addEventListener('change', () => handleUIStateChange('category'));
+            selectGender.addEventListener('change', () => handleUIStateChange('gender'));
+            selectSizeA.addEventListener('change', () => handleUIStateChange('sizeA'));
+            selectBrandB.addEventListener('change', () => handleUIStateChange('brandB'));
+            
+            // Handle popstate for browser back/forward buttons
+            window.addEventListener('popstate', handleUrlParams);
+        }
+
+        // Run application on load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
