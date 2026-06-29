@@ -595,7 +595,7 @@
 
             channels.forEach((key) => {
                 const urlTemplate = affiliates[key];
-                const isActive = (key === 'amazon') || (urlTemplate && urlTemplate.trim() !== '');
+                const isActive = (key === 'amazon');
 
                 const btn = document.createElement(isActive ? 'a' : 'button');
 
