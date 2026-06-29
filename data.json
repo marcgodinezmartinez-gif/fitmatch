@@ -3,7 +3,6 @@
     "brand": "Nike",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Nike+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "38.5",
@@ -77,13 +76,17 @@
         "UK": "11",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Nike+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_NIKE_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.nike.com%2Fes%2Fw%3Fq%3DNike%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DNike%2B{size}"
+    }
   },
   {
     "brand": "Nike",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Nike+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -151,13 +154,17 @@
         "UK": "8",
         "CM": "27.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Nike+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_NIKE_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.nike.com%2Fes%2Fw%3Fq%3DNike%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DNike%2B{size}"
+    }
   },
   {
     "brand": "ASICS",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=ASICS+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "39",
@@ -231,13 +238,17 @@
         "UK": "10.5",
         "CM": "29.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=ASICS+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_ASICS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.asics.com%2Fes%2Fw%3Fq%3DASICS%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DASICS%2B{size}"
+    }
   },
   {
     "brand": "ASICS",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=ASICS+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -305,13 +316,17 @@
         "UK": "8.5",
         "CM": "27.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=ASICS+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_ASICS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.asics.com%2Fes%2Fw%3Fq%3DASICS%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DASICS%2B{size}"
+    }
   },
   {
     "brand": "New Balance",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=New+Balance+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "40",
@@ -379,13 +394,17 @@
         "UK": "11.5",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=New+Balance+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_NEW_BALANCE_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.newbalance.com%2Fes%2Fw%3Fq%3DNew+Balance%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DNew+Balance%2B{size}"
+    }
   },
   {
     "brand": "New Balance",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=New+Balance+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -453,13 +472,17 @@
         "UK": "8.5",
         "CM": "27.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=New+Balance+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_NEW_BALANCE_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.newbalance.com%2Fes%2Fw%3Fq%3DNew+Balance%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DNew+Balance%2B{size}"
+    }
   },
   {
     "brand": "Adidas",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Adidas+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "39 1/3",
@@ -527,13 +550,17 @@
         "UK": "11",
         "CM": "29.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Adidas+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_ADIDAS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.adidas.com%2Fes%2Fw%3Fq%3DAdidas%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DAdidas%2B{size}"
+    }
   },
   {
     "brand": "Adidas",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Adidas+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -601,13 +628,17 @@
         "UK": "8.5",
         "CM": "27.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Adidas+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_ADIDAS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.adidas.com%2Fes%2Fw%3Fq%3DAdidas%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DAdidas%2B{size}"
+    }
   },
   {
     "brand": "Saucony",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Saucony+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "40",
@@ -669,13 +700,17 @@
         "UK": "11",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Saucony+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_SAUCONY_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.saucony.com%2Fes%2Fw%3Fq%3DSaucony%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DSaucony%2B{size}"
+    }
   },
   {
     "brand": "Saucony",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Saucony+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -743,13 +778,17 @@
         "UK": "8.5",
         "CM": "27.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Saucony+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_SAUCONY_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.saucony.com%2Fes%2Fw%3Fq%3DSaucony%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DSaucony%2B{size}"
+    }
   },
   {
     "brand": "HOKA",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=HOKA+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "40",
@@ -811,13 +850,17 @@
         "UK": "11",
         "CM": "29.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=HOKA+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_HOKA_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.hoka.com%2Fes%2Fw%3Fq%3DHOKA%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DHOKA%2B{size}"
+    }
   },
   {
     "brand": "HOKA",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=HOKA+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -885,13 +928,17 @@
         "UK": "8.5",
         "CM": "27.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=HOKA+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_HOKA_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.hoka.com%2Fes%2Fw%3Fq%3DHOKA%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DHOKA%2B{size}"
+    }
   },
   {
     "brand": "Brooks",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Brooks+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "40",
@@ -953,13 +1000,17 @@
         "UK": "11",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Brooks+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_BROOKS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.brooks.com%2Fes%2Fw%3Fq%3DBrooks%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DBrooks%2B{size}"
+    }
   },
   {
     "brand": "Brooks",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Brooks+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -1027,13 +1078,17 @@
         "UK": "8.5",
         "CM": "27.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Brooks+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_BROOKS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.brooks.com%2Fes%2Fw%3Fq%3DBrooks%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DBrooks%2B{size}"
+    }
   },
   {
     "brand": "Converse",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Converse+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "39",
@@ -1101,13 +1156,17 @@
         "UK": "12",
         "CM": "30.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Converse+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_CONVERSE_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.converse.com%2Fes%2Fw%3Fq%3DConverse%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DConverse%2B{size}"
+    }
   },
   {
     "brand": "Converse",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Converse+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -1175,13 +1234,17 @@
         "UK": "9",
         "CM": "28.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Converse+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_CONVERSE_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.converse.com%2Fes%2Fw%3Fq%3DConverse%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DConverse%2B{size}"
+    }
   },
   {
     "brand": "Vans",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Vans+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "39",
@@ -1249,13 +1312,17 @@
         "UK": "11",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Vans+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_VANS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.vans.com%2Fes%2Fw%3Fq%3DVans%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DVans%2B{size}"
+    }
   },
   {
     "brand": "Vans",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Vans+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -1323,13 +1390,17 @@
         "UK": "8.5",
         "CM": "27.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Vans+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_VANS_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.vans.com%2Fes%2Fw%3Fq%3DVans%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DVans%2B{size}"
+    }
   },
   {
     "brand": "Puma",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Puma+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "39",
@@ -1397,13 +1468,17 @@
         "UK": "11",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Puma+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_PUMA_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.puma.com%2Fes%2Fw%3Fq%3DPuma%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DPuma%2B{size}"
+    }
   },
   {
     "brand": "Puma",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Puma+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -1471,13 +1546,17 @@
         "UK": "8.5",
         "CM": "27.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Puma+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_PUMA_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.puma.com%2Fes%2Fw%3Fq%3DPuma%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DPuma%2B{size}"
+    }
   },
   {
     "brand": "Reebok",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Reebok+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "39",
@@ -1545,13 +1624,17 @@
         "UK": "11",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Reebok+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_REEBOK_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.reebok.com%2Fes%2Fw%3Fq%3DReebok%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DReebok%2B{size}"
+    }
   },
   {
     "brand": "Reebok",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Reebok+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -1619,13 +1702,17 @@
         "UK": "8.5",
         "CM": "28.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Reebok+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_REEBOK_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.reebok.com%2Fes%2Fw%3Fq%3DReebok%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DReebok%2B{size}"
+    }
   },
   {
     "brand": "Under Armour",
     "category": "Calzado",
     "gender": "Hombre",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Under+Armour+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "39",
@@ -1693,13 +1780,17 @@
         "UK": "11",
         "CM": "30.0"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Under+Armour+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_UNDER_ARMOUR_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.underarmour.com%2Fes%2Fw%3Fq%3DUnder+Armour%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DUnder+Armour%2B{size}"
+    }
   },
   {
     "brand": "Under Armour",
     "category": "Calzado",
     "gender": "Mujer",
-    "affiliate_url_template": "https://www.amazon.es/s?k=Under+Armour+zapatillas+{size}&tag=tuidsitio-21",
     "sizes": [
       {
         "EU": "36",
@@ -1767,6 +1858,11 @@
         "UK": "8",
         "CM": "27.5"
       }
-    ]
+    ],
+    "affiliates": {
+      "amazon": "https://www.amazon.es/s?k=Under+Armour+zapatillas+{size}&tag=TU_ID_AMAZON-21",
+      "official_store": "https://www.awin1.com/cread.php?awinmid=TIENDA_UNDER_ARMOUR_ID&awinaffid=TU_ID_AWIN&ued=https%3A%2F%2Fwww.underarmour.com%2Fes%2Fw%3Fq%3DUnder+Armour%2B{size}",
+      "tradeinn": "https://tc.tradetracker.net/?c=TIENDA_TRADEINN_ID&m=12&a=TU_ID_TRADETRACKER&r=&u=%2Fes%2Fbusqueda%3Fsearch%3DUnder+Armour%2B{size}"
+    }
   }
 ]
