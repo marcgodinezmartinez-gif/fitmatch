@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full">
+<html lang="en" class="h-full">
 
 <head>
     <meta name="google-site-verification" content="vvQ56aEzWEU4l6V9cJ4355O4fmSu8ezDqQbnXb8erB4" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Tallas Profesional | Calculadora de Calzado</title>
+    <title>Professional Shoe Size Converter | Sneaker Size Calculator</title>
     <meta name="description"
-        content="Calculadora profesional de equivalencia de tallas de zapatillas. Convierte de forma precisa entre Nike, ASICS y New Balance basándote en centímetros.">
+        content="Professional sneaker size equivalence calculator. Convert accurately between Nike, ASICS, New Balance and others based on centimeters or inches.">
 
     <!-- Google Fonts: Inter for quintessential Swiss/Neo-grotesque typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,6 +66,11 @@
             <div class="flex items-baseline gap-2">
                 <span class="text-xs font-bold tracking-widest text-[#f3f4f6] uppercase">FITMATCH</span>
             </div>
+            <!-- Language Selector Toggle -->
+            <div class="flex items-center gap-1 bg-[#0b0b0c] border border-brandBorder rounded-sm p-0.5 font-mono text-[9px]">
+                <button id="langEn" class="px-2 py-1 rounded-sm text-white bg-zinc-800 transition-colors duration-150 focus:outline-none cursor-pointer">EN</button>
+                <button id="langEs" class="px-2 py-1 rounded-sm text-brandTextMuted hover:text-white transition-colors duration-150 focus:outline-none cursor-pointer">ES</button>
+            </div>
         </div>
     </header>
 
@@ -74,14 +79,12 @@
 
         <!-- Hero Section -->
         <div class="mb-12">
-            <div class="text-[10px] font-mono tracking-widest text-brandAccent uppercase mb-2">Longitud de Plantilla
-                (CM) como Estándar</div>
-            <h1 class="text-3xl font-light tracking-tight text-[#f3f4f6] sm:text-4xl">
-                Conversor de tallas de zapatillas
+            <div id="heroSubtitle" class="text-[10px] font-mono tracking-widest text-brandAccent uppercase mb-2">Insole Length as Standard</div>
+            <h1 id="heroTitle" class="text-3xl font-light tracking-tight text-[#f3f4f6] sm:text-4xl">
+                Sneaker size converter
             </h1>
-            <p class="text-xs text-brandTextMuted mt-2 max-w-xl font-light leading-relaxed">
-                Calculadora de calzado deportivo calibrada según las escalas de longitud interior oficiales de los
-                fabricantes.
+            <p id="heroText" class="text-xs text-brandTextMuted mt-2 max-w-xl font-light leading-relaxed">
+                Sports shoe calculator calibrated according to the official inner length scales of the manufacturers.
             </p>
         </div>
 
@@ -90,17 +93,20 @@
 
             <!-- Left Column: Input Form (lg:col-span-7) -->
             <div class="lg:col-span-7 bg-brandCard border border-brandBorder rounded-sm p-6 space-y-6">
-                <div class="border-b border-brandBorder pb-4">
-                    <span class="text-[10px] font-mono text-brandTextMuted uppercase tracking-widest">01 / ENTRADA Y
-                        PARÁMETROS</span>
+                <div class="border-b border-brandBorder pb-4 flex justify-between items-center">
+                    <span id="inputHeader" class="text-[10px] font-mono text-brandTextMuted uppercase tracking-widest">01 / INPUT & PARAMETERS</span>
+                    <!-- Unit Selector Toggle -->
+                    <div class="flex items-center gap-1 bg-[#0b0b0c] border border-brandBorder rounded-sm p-0.5 font-mono text-[9px]">
+                        <button id="unitCm" class="px-2 py-1 rounded-sm text-white bg-zinc-800 transition-colors duration-150 focus:outline-none">CM</button>
+                        <button id="unitIn" class="px-2 py-1 rounded-sm text-brandTextMuted hover:text-white transition-colors duration-150 focus:outline-none">IN</button>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Brand A -->
                     <div class="space-y-1.5">
-                        <label for="brandA"
-                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Marca
-                            Origen</label>
+                        <label for="brandA" id="brandALabel"
+                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Source Brand</label>
                         <select id="brandA"
                             class="w-full bg-[#0b0b0c] border border-brandBorder rounded-sm px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-500 transition-colors duration-150 cursor-pointer">
                             <!-- Populated dynamically -->
@@ -109,9 +115,8 @@
 
                     <!-- Brand B -->
                     <div class="space-y-1.5">
-                        <label for="brandB"
-                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Marca
-                            Destino</label>
+                        <label for="brandB" id="brandBLabel"
+                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Target Brand</label>
                         <select id="brandB"
                             class="w-full bg-[#0b0b0c] border border-brandBorder rounded-sm px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-500 transition-colors duration-150 cursor-pointer">
                             <!-- Populated dynamically -->
@@ -120,39 +125,28 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Category Selection -->
-                    <div class="space-y-1.5">
-                        <label for="category"
-                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Categoría</label>
-                        <select id="category"
-                            class="w-full bg-[#0b0b0c] border border-brandBorder rounded-sm px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-500 transition-colors duration-150 cursor-pointer">
-                            <!-- Populated dynamically -->
-                        </select>
-                    </div>
-
                     <!-- Gender Selection -->
                     <div class="space-y-1.5">
-                        <label for="gender"
-                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Género</label>
+                        <label for="gender" id="genderLabel"
+                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Gender</label>
                         <select id="gender"
                             class="w-full bg-[#0b0b0c] border border-brandBorder rounded-sm px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-500 transition-colors duration-150 cursor-pointer">
                             <!-- Populated dynamically -->
                         </select>
                     </div>
-                </div>
 
-                <!-- Size A (Current Size) -->
-                <div class="space-y-1.5">
-                    <label for="sizeA"
-                        class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Talla Actual
-                        (EU)</label>
-                    <select id="sizeA"
-                        class="w-full bg-[#0b0b0c] border border-brandBorder rounded-sm px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-500 transition-colors duration-150 cursor-pointer">
-                        <!-- Populated dynamically -->
-                    </select>
-                    <div id="sizeDetailsA"
-                        class="text-[10px] text-brandTextMuted flex gap-4 pt-1 font-mono tracking-wide">
-                        <!-- Shows US, UK, CM details of Brand A size on change -->
+                    <!-- Size A (Current Size) -->
+                    <div class="space-y-1.5">
+                        <label for="sizeA" id="sizeALabel"
+                            class="block text-[10px] font-mono text-brandTextMuted uppercase tracking-wider">Current Size (EU)</label>
+                        <select id="sizeA"
+                            class="w-full bg-[#0b0b0c] border border-brandBorder rounded-sm px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-500 transition-colors duration-150 cursor-pointer">
+                            <!-- Populated dynamically -->
+                        </select>
+                        <div id="sizeDetailsA"
+                            class="text-[10px] text-brandTextMuted flex gap-4 pt-1 font-mono tracking-wide">
+                            <!-- Shows US, UK, CM details of Brand A size on change -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,10 +176,8 @@
                     <!-- Placeholder state when not loaded or selected -->
                     <div id="resultPlaceholder"
                         class="hidden flex-grow flex flex-col items-center justify-center text-center py-12 space-y-3">
-                        <div class="text-brandTextMuted text-[10px] font-mono uppercase tracking-widest">Esperando
-                            Parámetros</div>
-                        <p class="text-xs text-brandTextMuted max-w-[200px] leading-relaxed font-light">Completa los
-                            campos para calcular la equivalencia.</p>
+                        <div id="placeholderHeader" class="text-brandTextMuted text-[10px] font-mono uppercase tracking-widest">Waiting for Parameters</div>
+                        <p id="placeholderText" class="text-xs text-brandTextMuted max-w-[200px] leading-relaxed font-light">Complete the fields to calculate the equivalence.</p>
                     </div>
 
                     <!-- Output Content state (Hidden by default) -->
@@ -193,8 +185,7 @@
                         <!-- Top Header info -->
                         <div>
                             <div class="flex items-center justify-between border-b border-brandBorder pb-3">
-                                <span class="text-[10px] font-mono text-brandTextMuted uppercase tracking-widest">02 /
-                                    CÁLCULO</span>
+                                <span id="resultHeader" class="text-[10px] font-mono text-brandTextMuted uppercase tracking-widest">02 / CALCULATION</span>
                                 <span id="matchBadge"
                                     class="text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border">
                                     <!-- Populated dynamically -->
@@ -215,35 +206,31 @@
                         <!-- 3-Column Scales breakdown -->
                         <div class="grid grid-cols-3 gap-2 border-t border-b border-brandBorder py-4 font-mono">
                             <div class="text-center">
-                                <span class="block text-[9px] text-brandTextMuted uppercase tracking-wider">US
-                                    Size</span>
+                                <span class="block text-[9px] text-brandTextMuted uppercase tracking-wider">US Size</span>
                                 <span class="block text-sm font-semibold text-[#f3f4f6] mt-0.5"
                                     id="destSizeUS">--</span>
                             </div>
                             <div class="text-center border-l border-r border-brandBorder">
-                                <span class="block text-[9px] text-brandTextMuted uppercase tracking-wider">UK
-                                    Size</span>
+                                <span class="block text-[9px] text-brandTextMuted uppercase tracking-wider">UK Size</span>
                                 <span class="block text-sm font-semibold text-[#f3f4f6] mt-0.5"
                                     id="destSizeUK">--</span>
                             </div>
                             <div class="text-center">
-                                <span
-                                    class="block text-[9px] text-brandTextMuted uppercase tracking-wider">Longitud</span>
-                                <span class="block text-sm font-semibold text-brandAccent mt-0.5" id="destSizeCM">--
-                                    cm</span>
+                                <span id="destSizeCMLabel"
+                                    class="block text-[9px] text-brandTextMuted uppercase tracking-wider">Length</span>
+                                <span class="block text-sm font-semibold text-brandAccent mt-0.5" id="destSizeCM">--</span>
                             </div>
                         </div>
 
                         <!-- Affiliate Comparison Section -->
                         <div class="space-y-3 pt-2">
-                            <span
-                                class="block text-[9px] font-mono text-brandTextMuted uppercase tracking-widest">Comparar
-                                disponibilidad por tiendas</span>
+                            <span id="affiliateHeader"
+                                class="block text-[9px] font-mono text-brandTextMuted uppercase tracking-widest">Compare availability by store</span>
                             <div id="affiliateButtonsContainer" class="flex flex-col gap-2">
                                 <!-- Populated dynamically -->
                             </div>
-                            <p class="text-[9px] text-center text-brandTextMuted mt-2 font-mono">
-                                Nota: Las equivalencias son orientativas y se basan en las guías oficiales.
+                            <p id="affiliateFootnote" class="text-[9px] text-center text-brandTextMuted mt-2 font-mono">
+                                Note: Equivalences are indicative and based on official size charts.
                             </p>
                         </div>
                     </div>
@@ -254,32 +241,24 @@
 
         <!-- FAQ Section -->
         <section class="mt-20 border-t border-brandBorder pt-12">
-            <h2 class="text-xs font-mono uppercase tracking-widest text-brandTextMuted mb-8">Información Técnica de
-                Tallaje</h2>
+            <h2 id="faqHeader" class="text-xs font-mono uppercase tracking-widest text-brandTextMuted mb-8">Technical Sizing Information</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="space-y-2">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-[#f3f4f6]">¿Por qué varían las tallas?
-                    </h3>
-                    <p class="text-xs text-brandTextMuted leading-relaxed font-light">
-                        Cada fabricante utiliza hormas de confección distintas. Un número 42 de Nike puede medir 26.5
-                        cm, mientras que un 42 de ASICS mide 26.5 cm o 25.25 cm dependiendo del modelo. La única medida
-                        universal y fiable es la longitud interior en centímetros.
+                    <h3 id="faq1Title" class="text-xs font-bold uppercase tracking-wider text-[#f3f4f6]">Why do sizes vary?</h3>
+                    <p id="faq1Text" class="text-xs text-brandTextMuted leading-relaxed font-light">
+                        Each manufacturer uses different manufacturing lasts. A Nike size 42 might measure 26.5 cm, while an ASICS size 42 measures 26.5 cm or 25.25 cm depending on the model. The only universal and reliable measurement is the internal length.
                     </p>
                 </div>
                 <div class="space-y-2 border-t border-brandBorder pt-4 md:border-t-0 md:pt-0">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-[#f3f4f6]">¿Qué es el Ajuste Óptimo?</h3>
-                    <p class="text-xs text-brandTextMuted leading-relaxed font-light">
-                        Si tu longitud exacta no coincide con la escala de la marca objetivo, la calculadora
-                        seleccionará el tamaño superior más próximo (normalmente +0.25 cm o +0.5 cm). Esto garantiza que
-                        el pie disponga de la holgura idónea para evitar fricción y molestias.
+                    <h3 id="faq2Title" class="text-xs font-bold uppercase tracking-wider text-[#f3f4f6]">What is the Optimal Fit?</h3>
+                    <p id="faq2Text" class="text-xs text-brandTextMuted leading-relaxed font-light">
+                        If your exact length does not match the scale of the target brand, the calculator will select the next size up (usually +0.25 cm or +0.5 cm). This ensures that your foot has the proper clearance to avoid friction and discomfort.
                     </p>
                 </div>
                 <div class="space-y-2 border-t border-brandBorder pt-4 md:border-t-0 md:pt-0">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-[#f3f4f6]">Cómo medir tu pie</h3>
-                    <p class="text-xs text-brandTextMuted leading-relaxed font-light">
-                        Ponte de pie sobre un papel apoyando el talón contra la pared. Dibuja el contorno del dedo más
-                        largo. Mide la distancia en centímetros. Es aconsejable añadir unos 0.5 cm de margen adicional
-                        para zapatillas de correr.
+                    <h3 id="faq3Title" class="text-xs font-bold uppercase tracking-wider text-[#f3f4f6]">How to measure your foot</h3>
+                    <p id="faq3Text" class="text-xs text-brandTextMuted leading-relaxed font-light">
+                        Stand on a piece of paper with your heel against the wall. Trace the outline of your longest toe. Measure the distance. It is advisable to add about 0.5 cm (0.2 in) of extra margin for running shoes.
                     </p>
                 </div>
             </div>
@@ -291,9 +270,9 @@
     <footer class="border-t border-brandBorder bg-brandDark text-brandTextMuted py-8">
         <div
             class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 sm:flex sm:justify-between sm:items-center text-[10px] font-mono tracking-wider">
-            <p>&copy; 2026 FITMATCH. Todos los derechos reservados.</p>
-            <p class="mt-2 sm:mt-0 text-brandTextMuted/70">
-                Enlaces de afiliados: Compras elegibles pueden generar comisiones de intermediación.
+            <p id="footerCopy">&copy; 2026 FITMATCH. All rights reserved.</p>
+            <p id="footerDisclosure" class="mt-2 sm:mt-0 text-brandTextMuted/70">
+                Affiliate links: Eligible purchases may generate referral commissions.
             </p>
         </div>
     </footer>
@@ -303,14 +282,19 @@
         let db = []; // Size template database
         let isUpdatingFromUrl = false; // Prevents URL rewrite feedback loops during popstate/parsing
         let urlParams = null; // Stored query parameters during initial load
+        let currentUnit = 'cm'; // Active length unit: 'cm' or 'in'
+        let currentLang = 'en'; // Active language: 'en' or 'es'
 
         // DOM elements
-        const selectCategory = document.getElementById('category');
         const selectGender = document.getElementById('gender');
         const selectBrandA = document.getElementById('brandA');
         const selectSizeA = document.getElementById('sizeA');
         const selectBrandB = document.getElementById('brandB');
         const sizeDetailsA = document.getElementById('sizeDetailsA');
+        const unitCmBtn = document.getElementById('unitCm');
+        const unitInBtn = document.getElementById('unitIn');
+        const langEnBtn = document.getElementById('langEn');
+        const langEsBtn = document.getElementById('langEs');
 
         const resultLoader = document.getElementById('resultLoader');
         const resultPlaceholder = document.getElementById('resultPlaceholder');
@@ -324,6 +308,130 @@
         const matchDescription = document.getElementById('matchDescription');
         const affiliateButtonsContainer = document.getElementById('affiliateButtonsContainer');
 
+        const translations = {
+            en: {
+                title: "Professional Shoe Size Converter | Sneaker Size Calculator",
+                heroSubtitle: "Insole Length as Standard",
+                heroTitle: "Sneaker size converter",
+                heroText: "Sports shoe calculator calibrated according to the official inner length scales of the manufacturers.",
+                inputHeader: "01 / INPUT & PARAMETERS",
+                brandALabel: "Source Brand",
+                brandBLabel: "Target Brand",
+                genderLabel: "Gender",
+                sizeALabel: "Current Size (EU)",
+                resultHeader: "02 / CALCULATION",
+                placeholderHeader: "Waiting for Parameters",
+                placeholderText: "Complete the fields to calculate the equivalence.",
+                destSizeCMLabel: "Length",
+                affiliateHeader: "Compare availability by store",
+                affiliateFootnote: "Note: Equivalences are indicative and based on official size charts.",
+                faqHeader: "Technical Sizing Information",
+                faq1Title: "Why do sizes vary?",
+                faq1Text: "Each manufacturer uses different manufacturing lasts. A Nike size 42 might measure 26.5 cm, while an ASICS size 42 measures 26.5 cm or 25.25 cm depending on the model. The only universal and reliable measurement is the internal length.",
+                faq2Title: "What is the Optimal Fit?",
+                faq2Text: "If your exact length does not match the scale of the target brand, the calculator will select the next size up (usually +0.25 cm or +0.5 cm). This ensures that your foot has the proper clearance to avoid friction and discomfort.",
+                faq3Title: "How to measure your foot",
+                faq3Text: "Stand on a piece of paper with your heel against the wall. Trace the outline of your longest toe. Measure the distance. It is advisable to add about 0.5 cm (0.2 in) of extra margin for running shoes.",
+                footerCopy: "&copy; 2026 FITMATCH. All rights reserved.",
+                footerDisclosure: "Affiliate links: Eligible purchases may generate referral commissions."
+            },
+            es: {
+                title: "Conversor de Tallas Profesional | Calculadora de Calzado",
+                heroSubtitle: "Longitud de Plantilla como Estándar",
+                heroTitle: "Conversor de tallas de zapatillas",
+                heroText: "Calculadora de calzado deportivo calibrada según las escalas de longitud interior oficiales de los fabricantes.",
+                inputHeader: "01 / ENTRADA Y PARÁMETROS",
+                brandALabel: "Marca Origen",
+                brandBLabel: "Marca Destino",
+                genderLabel: "Género",
+                sizeALabel: "Talla Actual (EU)",
+                resultHeader: "02 / CÁLCULO",
+                placeholderHeader: "Esperando Parámetros",
+                placeholderText: "Completa los campos para calcular la equivalencia.",
+                destSizeCMLabel: "Longitud",
+                affiliateHeader: "Comparar disponibilidad por tiendas",
+                affiliateFootnote: "Nota: Las equivalencias son orientativas y se basan en las guías oficiales.",
+                faqHeader: "Información Técnica de Tallaje",
+                faq1Title: "¿Por qué varían las tallas?",
+                faq1Text: "Cada fabricante utiliza hormas de confección distintas. Un número 42 de Nike puede medir 26.5 cm, mientras que un 42 de ASICS mide 26.5 cm o 25.25 cm dependiendo del modelo. La única medida universal y fiable es la longitud interior en centímetros.",
+                faq2Title: "¿Qué es el Ajuste Óptimo?",
+                faq2Text: "Si tu longitud exacta no coincide con la escala de la marca objetivo, la calculadora seleccionará el tamaño superior más próximo (normalmente +0.25 cm o +0.5 cm). Esto garantiza que el pie disponga de la holgura idónea para evitar fricción y molestias.",
+                faq3Title: "Cómo medir tu pie",
+                faq3Text: "Ponte de pie sobre un papel apoyando el talón contra la pared. Dibuja el contorno del dedo más largo. Mide la distancia en centímetros. Es aconsejable añadir unos 0.5 cm de margen adicional para zapatillas de correr.",
+                footerCopy: "&copy; 2026 FITMATCH. Todos los derechos reservados.",
+                footerDisclosure: "Enlaces de afiliados: Compras elegibles pueden generar comisiones de intermediación."
+            }
+        };
+
+        function updateLanguageUI() {
+            const t = translations[currentLang];
+            document.title = t.title;
+            document.getElementById('heroSubtitle').textContent = t.heroSubtitle;
+            document.getElementById('heroTitle').textContent = t.heroTitle;
+            document.getElementById('heroText').textContent = t.heroText;
+            document.getElementById('inputHeader').textContent = t.inputHeader;
+            document.getElementById('brandALabel').textContent = t.brandALabel;
+            document.getElementById('brandBLabel').textContent = t.brandBLabel;
+            document.getElementById('genderLabel').textContent = t.genderLabel;
+            document.getElementById('sizeALabel').textContent = t.sizeALabel;
+            document.getElementById('resultHeader').textContent = t.resultHeader;
+            document.getElementById('placeholderHeader').textContent = t.placeholderHeader;
+            document.getElementById('placeholderText').textContent = t.placeholderText;
+            document.getElementById('destSizeCMLabel').textContent = t.destSizeCMLabel;
+            document.getElementById('affiliateHeader').textContent = t.affiliateHeader;
+            document.getElementById('affiliateFootnote').textContent = t.affiliateFootnote;
+            document.getElementById('faqHeader').textContent = t.faqHeader;
+            document.getElementById('faq1Title').textContent = t.faq1Title;
+            document.getElementById('faq1Text').textContent = t.faq1Text;
+            document.getElementById('faq2Title').textContent = t.faq2Title;
+            document.getElementById('faq2Text').textContent = t.faq2Text;
+            document.getElementById('faq3Title').textContent = t.faq3Title;
+            document.getElementById('faq3Text').textContent = t.faq3Text;
+            document.getElementById('footerCopy').innerHTML = t.footerCopy;
+            document.getElementById('footerDisclosure').innerHTML = t.footerDisclosure;
+
+            // Update DOM html element language attribute
+            document.documentElement.lang = currentLang;
+        }
+
+        // Helper formatting functions for length units
+        function formatLength(cmValue) {
+            const val = parseFloat(cmValue);
+            if (currentUnit === 'in') {
+                return `${(val / 2.54).toFixed(2)} in`;
+            }
+            return `${val.toFixed(1)} cm`;
+        }
+
+        function formatDiff(cmDiffValue) {
+            const val = parseFloat(cmDiffValue);
+            const prefix = val >= 0 ? '+' : '';
+            if (currentUnit === 'in') {
+                return `${prefix}${(val / 2.54).toFixed(2)} in`;
+            }
+            return `${prefix}${val.toFixed(2)} cm`;
+        }
+
+        function updateUnitToggleUI() {
+            if (currentUnit === 'in') {
+                unitInBtn.className = "px-2 py-1 rounded-sm text-white bg-zinc-800 transition-colors duration-150 focus:outline-none cursor-pointer";
+                unitCmBtn.className = "px-2 py-1 rounded-sm text-brandTextMuted hover:text-white transition-colors duration-150 focus:outline-none cursor-pointer";
+            } else {
+                unitCmBtn.className = "px-2 py-1 rounded-sm text-white bg-zinc-800 transition-colors duration-150 focus:outline-none cursor-pointer";
+                unitInBtn.className = "px-2 py-1 rounded-sm text-brandTextMuted hover:text-white transition-colors duration-150 focus:outline-none cursor-pointer";
+            }
+        }
+
+        function updateLangToggleUI() {
+            if (currentLang === 'es') {
+                langEsBtn.className = "px-2 py-1 rounded-sm text-white bg-zinc-800 transition-colors duration-150 focus:outline-none cursor-pointer";
+                langEnBtn.className = "px-2 py-1 rounded-sm text-brandTextMuted hover:text-white transition-colors duration-150 focus:outline-none cursor-pointer";
+            } else {
+                langEnBtn.className = "px-2 py-1 rounded-sm text-white bg-zinc-800 transition-colors duration-150 focus:outline-none cursor-pointer";
+                langEsBtn.className = "px-2 py-1 rounded-sm text-brandTextMuted hover:text-white transition-colors duration-150 focus:outline-none cursor-pointer";
+            }
+        }
+
         // Initial loading of size chart database
         async function init() {
             try {
@@ -334,13 +442,27 @@
 
                 const response = await fetch('./data.json');
                 if (!response.ok) {
-                    throw new Error('Error al cargar la base de datos de tallas.');
+                    throw new Error('Failed to load size charts database.');
                 }
                 db = await response.json();
 
+                // Parse initial URL language & unit config first
+                const params = new URLSearchParams(window.location.search);
+                const langParam = params.get('lang');
+                if (langParam && (langParam.toLowerCase() === 'es' || langParam.toLowerCase() === 'en')) {
+                    currentLang = langParam.toLowerCase();
+                }
+                const unitParam = params.get('unit');
+                if (unitParam && (unitParam.toLowerCase() === 'in' || unitParam.toLowerCase() === 'cm')) {
+                    currentUnit = unitParam.toLowerCase();
+                }
+                updateLangToggleUI();
+                updateLanguageUI();
+                updateUnitToggleUI();
+
                 // Build dynamic filters and parameters
                 buildInitialDropdowns();
-                handleUrlParams();
+                handleUrlParams(); // Parse size/brand/gender and calculate
                 bindEvents();
 
                 // Switch loader to state skeleton
@@ -362,34 +484,27 @@
             // Build selector options
             selectBrandA.innerHTML = brands.map(brand => `<option value="${brand}">${brand}</option>`).join('');
 
-            // Re-render categories based on initial selection
-            updateCategories();
+            // Re-render based on initial selection
             updateGenders();
             updateBrandBOptions();
             updateSizes();
         }
 
-        // Dynamically populates Categories based on Brand A selection
-        function updateCategories() {
-            const currentBrandA = selectBrandA.value;
-            const categories = [...new Set(db.filter(item => item.brand === currentBrandA).map(item => item.category))];
-
-            selectCategory.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
-
-            // Preselect url param if exists
-            if (urlParams && urlParams.category) {
-                const matched = categories.find(c => c.toLowerCase() === urlParams.category.toLowerCase());
-                if (matched) selectCategory.value = matched;
-            }
-        }
-
-        // Dynamically populates Genders based on Brand A + Category selection
+        // Dynamically populates Genders based on Brand A selection
         function updateGenders() {
             const currentBrandA = selectBrandA.value;
-            const currentCat = selectCategory.value;
+            const currentCat = 'Calzado';
             const genders = [...new Set(db.filter(item => item.brand === currentBrandA && item.category === currentCat).map(item => item.gender))];
 
-            selectGender.innerHTML = genders.map(gen => `<option value="${gen}">${gen}</option>`).join('');
+            selectGender.innerHTML = genders.map(gen => {
+                let label = gen;
+                if (currentLang === 'en') {
+                    label = gen === 'Hombre' ? 'Men' : (gen === 'Mujer' ? 'Women' : gen);
+                } else {
+                    label = gen === 'Hombre' ? 'Hombre' : (gen === 'Mujer' ? 'Mujer' : gen);
+                }
+                return `<option value="${gen}">${label}</option>`;
+            }).join('');
 
             if (urlParams && urlParams.gender) {
                 const matched = genders.find(g => g.toLowerCase() === urlParams.gender.toLowerCase());
@@ -405,12 +520,12 @@
         }
 
         // Dynamically populates Brand B (Target Brand) ensuring Brand B !== Brand A
+        // Ensure same Category & Gender combination
         function updateBrandBOptions() {
             const currentBrandA = selectBrandA.value;
-            const currentCat = selectCategory.value;
+            const currentCat = 'Calzado';
             const currentGen = selectGender.value;
 
-            // Brand B must support the same Category & Gender combination
             const filteredItems = db.filter(item => item.category === currentCat && item.gender === currentGen);
             const availableBrands = [...new Set(filteredItems.map(item => item.brand))];
 
@@ -437,7 +552,7 @@
         // Populates target sizes from the active selection
         function updateSizes() {
             const currentBrand = selectBrandA.value;
-            const currentCat = selectCategory.value;
+            const currentCat = 'Calzado';
             const currentGen = selectGender.value;
 
             const item = db.find(x => x.brand === currentBrand && x.category === currentCat && x.gender === currentGen);
@@ -449,7 +564,7 @@
 
             // Build sizes array ordered by size number/string
             selectSizeA.innerHTML = item.sizes.map(sizeObj => {
-                return `<option value="${sizeObj.EU}">${sizeObj.EU} (${sizeObj.CM} cm)</option>`;
+                return `<option value="${sizeObj.EU}">${sizeObj.EU} (${formatLength(sizeObj.CM)})</option>`;
             }).join('');
 
             // Sync size with URL params
@@ -464,7 +579,7 @@
         // Displays secondary detail labels for selected size A
         function updateSizeDetailsA() {
             const currentBrand = selectBrandA.value;
-            const currentCat = selectCategory.value;
+            const currentCat = 'Calzado';
             const currentGen = selectGender.value;
             const sizeEU = selectSizeA.value;
 
@@ -473,10 +588,11 @@
 
             const sizeObj = item.sizes.find(s => s.EU === sizeEU);
             if (sizeObj) {
+                const label = currentLang === 'en' ? 'Length' : 'Medida';
                 sizeDetailsA.innerHTML = `
                     <span>US: ${sizeObj.US}</span>
                     <span>UK: ${sizeObj.UK}</span>
-                    <span>Medida: ${sizeObj.CM} cm</span>
+                    <span>${label}: ${formatLength(sizeObj.CM)}</span>
                 `;
             } else {
                 sizeDetailsA.innerHTML = '';
@@ -487,7 +603,7 @@
         function calculateEquivalence() {
             const brandA = selectBrandA.value;
             const brandB = selectBrandB.value;
-            const cat = selectCategory.value;
+            const cat = 'Calzado';
             const gen = selectGender.value;
             const sizeEU_A = selectSizeA.value;
 
@@ -561,27 +677,49 @@
             destSizeEU.textContent = result.sizeB.EU;
             destSizeUS.textContent = result.sizeB.US;
             destSizeUK.textContent = result.sizeB.UK;
-            destSizeCM.textContent = result.sizeB.CM;
+            destSizeCM.textContent = formatLength(result.sizeB.CM);
 
             const cmDiff = parseFloat(result.sizeB.CM) - parseFloat(result.sizeA.CM);
 
-            if (result.isExact) {
-                matchBadge.textContent = "Ajuste Exacto";
-                matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-emerald-800 text-emerald-400 bg-emerald-950/20";
-                matchDescription.innerHTML = `Las plantillas de ambas marcas miden exactamente lo mismo (<strong>${result.sizeB.CM} cm</strong>).`;
-            } else {
-                if (parseFloat(result.sizeB.CM) < parseFloat(result.sizeA.CM)) {
-                    matchBadge.textContent = "Talla Máxima";
-                    matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-rose-800 text-rose-400 bg-rose-950/20";
-                    matchDescription.innerHTML = `Esta es la talla más grande de ${result.brandB}. Mide <strong>${result.sizeB.CM} cm</strong> (queda ${Math.abs(cmDiff).toFixed(2)} cm más corta).`;
-                } else if (cmDiff > 0.6) {
-                    matchBadge.textContent = "Ajuste aproximado";
-                    matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-amber-800 text-amber-500 bg-amber-950/20";
-                    matchDescription.innerHTML = `Diferencia de plantilla considerable (<strong>+${cmDiff.toFixed(2)} cm</strong>). Se recomienda probar para verificar el ajuste.`;
+            if (currentLang === 'en') {
+                if (result.isExact) {
+                    matchBadge.textContent = "Exact Fit";
+                    matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-emerald-800 text-emerald-400 bg-emerald-950/20";
+                    matchDescription.innerHTML = `The insoles of both brands measure exactly the same (<strong>${formatLength(result.sizeB.CM)}</strong>).`;
                 } else {
-                    matchBadge.textContent = "Ajuste óptimo";
-                    matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-zinc-700 text-zinc-300 bg-zinc-800/30";
-                    matchDescription.innerHTML = `No hay coincidencia exacta de plantilla. Recomendamos redondear hacia arriba (<strong>+${cmDiff.toFixed(2)} cm</strong>) para evitar roces.`;
+                    if (parseFloat(result.sizeB.CM) < parseFloat(result.sizeA.CM)) {
+                        matchBadge.textContent = "Maximum Size";
+                        matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-rose-800 text-rose-400 bg-rose-950/20";
+                        matchDescription.innerHTML = `This is the largest size of ${result.brandB}. It measures <strong>${formatLength(result.sizeB.CM)}</strong> (is ${formatDiff(Math.abs(cmDiff))} shorter).`;
+                    } else if (cmDiff > 0.6) {
+                        matchBadge.textContent = "Approximate Fit";
+                        matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-amber-800 text-amber-500 bg-amber-950/20";
+                        matchDescription.innerHTML = `Significant insole difference (<strong>${formatDiff(cmDiff)}</strong>). Trying them on is recommended to verify the fit.`;
+                    } else {
+                        matchBadge.textContent = "Optimal Fit";
+                        matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-zinc-700 text-zinc-300 bg-zinc-800/30";
+                        matchDescription.innerHTML = `No exact insole match. We recommend rounding up (<strong>${formatDiff(cmDiff)}</strong>) to avoid friction.`;
+                    }
+                }
+            } else {
+                if (result.isExact) {
+                    matchBadge.textContent = "Ajuste Exacto";
+                    matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-emerald-800 text-emerald-400 bg-emerald-950/20";
+                    matchDescription.innerHTML = `Las plantillas de ambas marcas miden exactamente lo mismo (<strong>${formatLength(result.sizeB.CM)}</strong>).`;
+                } else {
+                    if (parseFloat(result.sizeB.CM) < parseFloat(result.sizeA.CM)) {
+                        matchBadge.textContent = "Talla Máxima";
+                        matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-rose-800 text-rose-400 bg-rose-950/20";
+                        matchDescription.innerHTML = `Esta es la talla más grande de ${result.brandB}. Mide <strong>${formatLength(result.sizeB.CM)}</strong> (queda ${formatDiff(Math.abs(cmDiff))} más corta).`;
+                    } else if (cmDiff > 0.6) {
+                        matchBadge.textContent = "Ajuste aproximado";
+                        matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-amber-800 text-amber-500 bg-amber-950/20";
+                        matchDescription.innerHTML = `Diferencia de plantilla considerable (<strong>${formatDiff(cmDiff)}</strong>). Se recomienda probar para verificar el ajuste.`;
+                    } else {
+                        matchBadge.textContent = "Ajuste óptimo";
+                        matchBadge.className = "text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-sm border border-zinc-700 text-zinc-300 bg-zinc-800/30";
+                        matchDescription.innerHTML = `No hay coincidencia exacta de plantilla. Recomendamos redondear hacia arriba (<strong>${formatDiff(cmDiff)}</strong>) para evitar roces.`;
+                    }
                 }
             }
 
@@ -606,8 +744,11 @@
 
                     let finalUrl = urlTemplate || '';
                     if (key === 'amazon') {
-                        // High-precision keyword: Brand + "zapatillas" + Gender + "Talla" + Size
-                        const searchKeyword = `${result.brandB} zapatillas ${genderText} Talla ${sizeText}`;
+                        // High-precision keyword: Brand + "shoes/zapatillas" + Gender + "Size/Talla" + Size
+                        const searchGender = currentLang === 'en' ? (genderText === 'Hombre' ? 'Men' : 'Women') : genderText;
+                        const searchWord = currentLang === 'en' ? 'shoes' : 'zapatillas';
+                        const searchSize = currentLang === 'en' ? 'Size' : 'Talla';
+                        const searchKeyword = `${result.brandB} ${searchWord} ${searchGender} ${searchSize} ${sizeText}`;
                         try {
                             const urlObj = new URL(urlTemplate || 'https://www.amazon.es/s?tag=TU_ID_AMAZON-21');
                             urlObj.searchParams.set('k', searchKeyword);
@@ -626,22 +767,27 @@
                 // Specific styles and labels based on the key and active status
                 if (key === 'amazon') {
                     btn.className = "group flex items-center justify-between w-full bg-zinc-800 hover:bg-zinc-700 text-[#f3f4f6] font-medium rounded-sm px-4 py-3 text-xs transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-zinc-500 shadow-sm";
-                    btn.innerHTML = `<span>Buscar talla <span class="font-bold text-brandAccent">${sizeText}</span> en Amazon</span><span class="text-brandAccent group-hover:translate-x-1 transition-transform duration-300">➔</span>`;
+                    const amazonText = currentLang === 'en' ? `Search size <span class="font-bold text-brandAccent">${sizeText}</span> on Amazon` : `Buscar talla <span class="font-bold text-brandAccent">${sizeText}</span> en Amazon`;
+                    btn.innerHTML = `<span>${amazonText}</span><span class="text-brandAccent group-hover:translate-x-1 transition-transform duration-300">➔</span>`;
                 } else if (key === 'official_store') {
                     if (isActive) {
                         btn.className = "group flex items-center justify-between w-full border border-brandBorder hover:border-zinc-500 hover:bg-zinc-900/30 text-[#f3f4f6] font-medium rounded-sm px-4 py-3 text-xs transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-zinc-500";
-                        btn.innerHTML = `<span>Ver en Tienda Oficial ${result.brandB}</span><span class="text-white group-hover:translate-x-1 transition-transform duration-300">➔</span>`;
+                        const officialText = currentLang === 'en' ? `View on Official ${result.brandB} Store` : `Ver en Tienda Oficial ${result.brandB}`;
+                        btn.innerHTML = `<span>${officialText}</span><span class="text-white group-hover:translate-x-1 transition-transform duration-300">➔</span>`;
                     } else {
                         btn.className = "flex items-center justify-between w-full border border-brandBorder/40 text-zinc-600 font-medium rounded-sm px-4 py-3 text-xs opacity-30 cursor-not-allowed pointer-events-none";
-                        btn.innerHTML = `<span>Tienda Oficial ${result.brandB} (Próximamente)</span><span>➔</span>`;
+                        const officialText = currentLang === 'en' ? `Official ${result.brandB} Store (Coming Soon)` : `Tienda Oficial ${result.brandB} (Próximamente)`;
+                        btn.innerHTML = `<span>${officialText}</span><span>➔</span>`;
                     }
                 } else if (key === 'tradeinn') {
                     if (isActive) {
                         btn.className = "group flex items-center justify-between w-full bg-zinc-900 hover:bg-[#1f1f23] text-gray-200 border border-brandBorder font-medium rounded-sm px-4 py-3 text-xs transition-colors duration-150 hover:text-white focus:outline-none focus:ring-1 focus:ring-zinc-500";
-                        btn.innerHTML = `<span>Buscar en Tienda Especializada (Tradeinn)</span><span class="text-brandAccent group-hover:translate-x-1 transition-transform duration-300">➔</span>`;
+                        const tradeinnText = currentLang === 'en' ? "Search on Specialized Store (Tradeinn)" : "Buscar en Tienda Especializada (Tradeinn)";
+                        btn.innerHTML = `<span>${tradeinnText}</span><span class="text-brandAccent group-hover:translate-x-1 transition-transform duration-300">➔</span>`;
                     } else {
                         btn.className = "flex items-center justify-between w-full bg-[#161618] border border-brandBorder/40 text-zinc-600 font-medium rounded-sm px-4 py-3 text-xs opacity-30 cursor-not-allowed pointer-events-none";
-                        btn.innerHTML = `<span>Tienda Especializada (Próximamente)</span><span>➔</span>`;
+                        const tradeinnText = currentLang === 'en' ? "Specialized Store (Coming Soon)" : "Tienda Especializada (Próximamente)";
+                        btn.innerHTML = `<span>${tradeinnText}</span><span>➔</span>`;
                     }
                 }
 
@@ -663,14 +809,25 @@
             const toBrand = selectBrandB.value;
             const size = selectSizeA.value;
             const gender = selectGender.value;
-            const category = selectCategory.value;
 
             const url = new URL(window.location);
             if (fromBrand) url.searchParams.set('from', fromBrand.toLowerCase());
             if (toBrand) url.searchParams.set('to', toBrand.toLowerCase());
             if (size) url.searchParams.set('size', size);
             if (gender) url.searchParams.set('gender', gender.toLowerCase());
-            if (category) url.searchParams.set('category', category.toLowerCase());
+            url.searchParams.delete('category'); // Clean up old category parameter
+
+            if (currentUnit !== 'cm') {
+                url.searchParams.set('unit', currentUnit);
+            } else {
+                url.searchParams.delete('unit');
+            }
+
+            if (currentLang !== 'en') {
+                url.searchParams.set('lang', currentLang);
+            } else {
+                url.searchParams.delete('lang');
+            }
 
             if (isInitial) {
                 window.history.replaceState({}, '', url);
@@ -689,7 +846,23 @@
             const toParam = params.get('to');
             const sizeParam = params.get('size');
             const genderParam = params.get('gender');
-            const categoryParam = params.get('category');
+            const unitParam = params.get('unit');
+            const langParam = params.get('lang');
+
+            if (langParam && (langParam.toLowerCase() === 'es' || langParam.toLowerCase() === 'en')) {
+                currentLang = langParam.toLowerCase();
+            } else {
+                currentLang = 'en'; // default English
+            }
+            updateLangToggleUI();
+            updateLanguageUI();
+
+            if (unitParam && (unitParam.toLowerCase() === 'in' || unitParam.toLowerCase() === 'cm')) {
+                currentUnit = unitParam.toLowerCase();
+            } else {
+                currentUnit = 'cm'; // default centimeters
+            }
+            updateUnitToggleUI();
 
             if (!fromParam && !toParam && !sizeParam) return; // No parameters, keep defaults
 
@@ -697,8 +870,7 @@
                 from: fromParam,
                 to: toParam,
                 size: sizeParam,
-                gender: genderParam,
-                category: categoryParam
+                gender: genderParam
             };
 
             isUpdatingFromUrl = true;
@@ -710,7 +882,6 @@
             }
 
             // Run cascade updates
-            updateCategories();
             updateGenders();
             updateBrandBOptions();
             updateSizes();
@@ -730,11 +901,6 @@
             isUpdatingFromUrl = true; // Block pushState triggers during cascade
 
             if (changeType === 'brandA') {
-                updateCategories();
-                updateGenders();
-                updateBrandBOptions();
-                updateSizes();
-            } else if (changeType === 'category') {
                 updateGenders();
                 updateBrandBOptions();
                 updateSizes();
@@ -756,10 +922,47 @@
         // Bind standard DOM event listeners
         function bindEvents() {
             selectBrandA.addEventListener('change', () => handleUIStateChange('brandA'));
-            selectCategory.addEventListener('change', () => handleUIStateChange('category'));
             selectGender.addEventListener('change', () => handleUIStateChange('gender'));
             selectSizeA.addEventListener('change', () => handleUIStateChange('sizeA'));
             selectBrandB.addEventListener('change', () => handleUIStateChange('brandB'));
+
+            unitCmBtn.addEventListener('click', () => {
+                if (currentUnit !== 'cm') {
+                    currentUnit = 'cm';
+                    updateUnitToggleUI();
+                    updateSizes();
+                    calculateEquivalence();
+                }
+            });
+            unitInBtn.addEventListener('click', () => {
+                if (currentUnit !== 'in') {
+                    currentUnit = 'in';
+                    updateUnitToggleUI();
+                    updateSizes();
+                    calculateEquivalence();
+                }
+            });
+
+            langEnBtn.addEventListener('click', () => {
+                if (currentLang !== 'en') {
+                    currentLang = 'en';
+                    updateLangToggleUI();
+                    updateLanguageUI();
+                    updateGenders();
+                    updateSizes();
+                    calculateEquivalence();
+                }
+            });
+            langEsBtn.addEventListener('click', () => {
+                if (currentLang !== 'es') {
+                    currentLang = 'es';
+                    updateLangToggleUI();
+                    updateLanguageUI();
+                    updateGenders();
+                    updateSizes();
+                    calculateEquivalence();
+                }
+            });
 
             // Handle popstate for browser back/forward buttons
             window.addEventListener('popstate', handleUrlParams);
